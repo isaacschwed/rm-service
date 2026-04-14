@@ -14,6 +14,7 @@ from app.db.redis import init_redis, close_redis
 from app.db.session import engine
 from app.middleware.logging import RequestLoggingMiddleware
 from app.api.v1.health import router as health_router
+from app.api.v1.companies import router as company_router
 
 settings = get_settings()
 configure_logging()
@@ -93,7 +94,7 @@ app.add_middleware(
 # Routers
 # ---------------------------------------------------------------------------
 app.include_router(health_router)          # GET /health — no prefix, no auth
+app.include_router(company_router, prefix="/v1/companies")
 # Future routers added here as each step is built:
-# app.include_router(company_router, prefix="/v1/companies", ...)
 # app.include_router(payments_router, prefix="/v1/rm", ...)
 # etc.

@@ -21,6 +21,10 @@ class RMCredentials(Base):
         unique=True,
     )
 
+    # Rent Manager corp ID — used to build the per-company API base URL
+    # e.g. "acme" → https://acme.api.rentmanager.com
+    corpid: Mapped[str] = mapped_column(String, nullable=False)
+
     # Fernet-encrypted with per-company HKDF-derived key
     username_encrypted: Mapped[str] = mapped_column(String, nullable=False)
     password_encrypted: Mapped[str] = mapped_column(String, nullable=False)
